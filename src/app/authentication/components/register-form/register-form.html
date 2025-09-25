@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <div>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email">
+            @if(form.controls.email.invalid) {
+                <mat-error>A valid email is required</mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            @if(form.controls.password.invalid) {
+                <mat-error>A password between 4 and 64 character is required</mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Repeat Password</mat-label>
+            <input type="password" matInput formControlName="repeatPassword">
+            @if(form.controls.repeatPassword.hasError('required')) {
+                <mat-error>Please enter your password again</mat-error>
+            }
+            @if(form.controls.repeatPassword.hasError('PasswordNoRepeat')) {
+                <mat-error>Passwords do not match</mat-error>
+            }
+        </mat-form-field>
+    </div>
+    
+    <button matButton="filled">Register</button>
+</form>
+

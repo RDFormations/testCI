@@ -1,0 +1,12 @@
+<h1>Register</h1>
+@if(serverError()) {
+    <p>{{serverError()}}</p>
+}
+
+@if(isLogin()) {
+    <hb-login-form (submitForm)="login($event)" />
+    <button matButton (click)="switchForm()" data-test="sign-up">Sign up</button>
+} @else {
+    <hb-register-form (submitForm)="register($event)"/>
+    <button matButton (click)="switchForm()">Login</button>
+}

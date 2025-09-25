@@ -1,0 +1,20 @@
+<ul>
+    @for (item of links(); track $index) {
+        @if(!item.auth || auth.isLogged()) {
+
+            <li><a 
+            [routerLink]="item.path" 
+            routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact:item.path == '/'}">{{item.name}}</a></li>
+        }
+
+    }
+</ul>
+
+@if(auth.isLogged()) {
+    <button matButton="filled" (click)="auth.logout()">Logout</button>
+    <button (click)="refresh()">Refresh token</button>
+    <button (click)="testAuth()">Test Auth</button>
+} @else {
+    <a matButton="filled" routerLink="/register">Login</a>
+}
